@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Login from "./Form/Login";
+import Register from "./Form/Register";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import HomePage from "./Pages/HomePage";
+import PrivateRoutes from "./Util/PrivateRoutes";
 
-function App() {
+export default function App() {
+  // const nav = useNavigate();
+  // const isAuth = JSON.parse(localStorage.getItem("token"));
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route element={<PrivateRoutes />}>
+        <Route path="/" element={<HomePage />} exact />
+      </Route>
+      <Route path="/login" element={<Login />} exact />
+      <Route path="/register" element={<Register />} />
+    </Routes>
   );
 }
-
-export default App;
